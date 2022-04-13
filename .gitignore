@@ -266,4 +266,5 @@ cython_debug/
 #.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,python
-venv/
+venv/ # to ignore virtualenv folder
+.idea/ # it could be on exclude, but let's do it here
