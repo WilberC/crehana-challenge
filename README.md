@@ -1,5 +1,10 @@
 # Crehana-Challenge
 
+- Requirements:
+  - Have postgresql installed locally
+  - The project is developed on `python 3.10.1`
+  
+
 - Steps to start the project locally: 
   - To manage package versions better I install `pipenv`
 ```zsh
