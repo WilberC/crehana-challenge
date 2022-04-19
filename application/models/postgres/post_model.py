@@ -11,4 +11,5 @@ class Post(Base):
     title = Column(String)
     body = Column(Text)
     user_id = Column(Integer, ForeignKey("users.id"))
-    user = relationship("User", back_populates="post")
+    user = relationship("User", back_populates="posts")
+    comments = relationship("Comment", back_populates="posts")

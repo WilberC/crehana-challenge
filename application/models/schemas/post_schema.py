@@ -5,3 +5,6 @@ class PostSchema(CrehanaBaseSchema):
     userId: int
     title: str
     body: str
+
+    class Config:
+        orm_mode = True

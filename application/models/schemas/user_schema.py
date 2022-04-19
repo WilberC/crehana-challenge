@@ -6,6 +6,9 @@ class GeoSchema(BaseModel):
     lat: int
     lng: str
 
+    class Config:
+        orm_mode = True
+
 
 class AddressSchema(BaseModel):
     street: str
@@ -14,11 +17,17 @@ class AddressSchema(BaseModel):
     zipcode: str
     geo: GeoSchema
 
+    class Config:
+        orm_mode = True
+
 
 class CompanySchema(BaseModel):
     name: str
     catchPhrase: str
     bs: str
+
+    class Config:
+        orm_mode = True
 
 
 class UserSchema(CrehanaBaseSchema):
@@ -29,3 +38,6 @@ class UserSchema(CrehanaBaseSchema):
     phone: str
     website: str
     company: CompanySchema
+
+    class Config:
+        orm_mode = True

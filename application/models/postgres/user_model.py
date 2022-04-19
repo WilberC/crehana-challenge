@@ -23,6 +23,7 @@ class Address(Base):
     zipcode = Column(String)
     geo_id = Column(Integer, ForeignKey("geo.id"))
     geo = relationship("Geo", back_populates="addresses")
+    users = relationship("User", back_populates="address")
 
 
 class Company(Base):
@@ -43,8 +44,9 @@ class User(Base):
     username = Column(String, unique=True)
     email = Column(String, unique=True)
     address_id = Column(Integer, ForeignKey("addresses.id"))
-    address = relationship("Item", back_populates="owner")
+    address = relationship("Address", back_populates="users")
     phone = Column(String)
     website = Column(String)
     company_id = Column(Integer, ForeignKey("companies.id"))
-    company = relationship("Item", back_populates="owner")
+    company = relationship("Company", back_populates="companies")
+    posts = relationship("Post", back_populates="user")
