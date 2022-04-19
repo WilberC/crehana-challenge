@@ -13,3 +13,21 @@
  pip install pipenv # to install the package manager
  pipenv install # to install all the necessary packages
 ```
+
+![image](https://user-images.githubusercontent.com/27011395/164089387-6e9c992c-b588-46d1-8c3f-29be6fd70f5f.png)
+
+
+- Rest endpoints:
+```zsh
+GET 	/posts
+GET 	/posts/1
+GET 	/posts/1/comments
+GET 	/comments?postId=1
+POST 	/posts
+PUT 	/posts/1
+PATCH 	/posts/1
+DELETE 	/posts/1
+```
+
+- I'm adding `.env` file as an example file that has to be modified
+- you can run the server on local host by `uvicorn main:app --reload`
