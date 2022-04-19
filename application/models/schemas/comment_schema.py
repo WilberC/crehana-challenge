@@ -2,7 +2,10 @@ from application.models.schemas.crehana_base_schema import CrehanaBaseSchema
 
 
 class CommentSchema(CrehanaBaseSchema):
-    postId: int
+    post_id: int
     name: str
     email: str
     body: str
+
+    class Config:
+        orm_mode = True

@@ -3,7 +3,7 @@ from application.models.schemas.crehana_base_schema import CrehanaBaseSchema
 
 
 class GeoSchema(BaseModel):
-    lat: int
+    lat: str
     lng: str
 
     class Config:
