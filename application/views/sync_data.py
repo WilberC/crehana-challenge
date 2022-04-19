@@ -1,10 +1,10 @@
 import requests
 from fastapi import APIRouter
-from typing import Optional
 from application.models.postgres.user_model import Geo, Address, Company, User
 from application.models.postgres.post_model import Post
 from application.models.postgres.comment_model import Comment
 from application.utils.sqlalchemy import find_or_create, find
+from application.utils.update_auto_increment_id import update_ids_of
 
 URL_API_BASE = "https://jsonplaceholder.typicode.com"
 
@@ -28,10 +28,12 @@ def sync_users(response_data):
         company_dict = user_dict.get("company")
 
         geo_instance = find_or_create(Geo,
+                                      close_session=True,
                                       lat=geo_dict.get("lat"),
                                       lng=geo_dict.get("lng"))
 
         address_instance = find_or_create(Address,
+                                          close_session=True,
                                           street=address_dict.get("street"),
                                           suite=address_dict.get("suite"),
                                           city=address_dict.get("city"),
@@ -39,11 +41,13 @@ def sync_users(response_data):
                                           geo_id=geo_instance.id)
 
         company_instance = find_or_create(Company,
+                                          close_session=True,
                                           name=company_dict.get("name"),
                                           catchPhrase=company_dict.get("catchPhrase"),
                                           bs=company_dict.get("bs"))
 
         user_instance = find_or_create(User,
+                                       close_session=True,
                                        id=user_dict.get("id"),
                                        name=user_dict.get("name"),
                                        username=user_dict.get("username"),
@@ -56,6 +60,7 @@ def sync_users(response_data):
             saved_correctly += 1
         else:
             errors += 1
+    update_ids_of(["geo", "addresses", "companies", "users"])
     return [len(response_data), saved_correctly, errors]
 
 
@@ -64,8 +69,9 @@ def sync_posts(response_data):
     errors = 0
 
     for post_dict in response_data:
-        user_instance = find(User, id=post_dict.get("userId"))
+        user_instance = find(User, close_session=True, id=post_dict.get("userId"))
         post_instance = find_or_create(Post,
+                                       close_session=True,
                                        id=post_dict.get("id"),
                                        title=post_dict.get("title"),
                                        body=post_dict.get("body"),
@@ -74,6 +80,7 @@ def sync_posts(response_data):
             saved_correctly += 1
         else:
             errors += 1
+    update_ids_of(["posts"])
     return [len(response_data), saved_correctly, errors]
 
 
@@ -82,8 +89,9 @@ def sync_comments(response_data):
     errors = 0
 
     for comment_dict in response_data:
-        post_instance = find(Post, id=comment_dict.get("postId"))
+        post_instance = find(Post, close_session=True, id=comment_dict.get("postId"))
         comment_instance = find_or_create(Comment,
+                                          close_session=True,
                                           id=comment_dict.get("id"),
                                           name=comment_dict.get("name"),
                                           email=comment_dict.get("email"),
@@ -93,6 +101,7 @@ def sync_comments(response_data):
             saved_correctly += 1
         else:
             errors += 1
+    update_ids_of(["comments"])
     return [len(response_data), saved_correctly, errors]
 
 
