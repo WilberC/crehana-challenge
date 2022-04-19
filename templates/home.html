@@ -2,10 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="{{ url_for('static', path='/reset.css') }}" rel="stylesheet">
-    <title>Title</title>
+    <link href="{{ url_for('static', path='/styles/reset.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/styles/index.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/styles/loader.css') }}" rel="stylesheet">
+    <title>Crehana Challenge</title>
 </head>
 <body>
-<button>Hi</button>
+<div class="left-divider"></div>
+<main>
+    <h1 class="title">Crehana Challenge</h1>
+    <section class="main_content">
+        <p>Sync all data from api -> https://jsonplaceholder.typicode.com/</p>
+        <p>will sync posts, comments, and users data</p>
+        <br/>
+        <form id="form_sync_data">
+            <button type="submit" class="submit_btn">Sync Data</button>
+        </form>
+        <br/>
+        <div id="loader-div"></div>
+        <section id="response-data"></section>
+    </section>
+</main>
+<div class="right-divider"></div>
 </body>
+<script type="text/javascript" src="{{ url_for('static', path='/js/json-viewer/dist/jsonview.js') }}"></script>
+<script>
+    const form = document.getElementById("form_sync_data");
+    const loader = document.getElementById("loader-div")
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        document.getElementById("response-data").innerHTML = "";
+        loader.setAttribute("class", "loader")
+        const response = await fetch("/sync_data/")
+        const json_response = await response.json()
+
+
+        loader.removeAttribute("class")
+        const data = jsonview.create(json_response);
+        jsonview.render(data, document.querySelector('#response-data'));
+        jsonview.expand(data);
+    });
+</script>
 </html>

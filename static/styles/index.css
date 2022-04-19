@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.left-divider {
+    background-color: #f1c50e;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: -1;
+}
+
+.right-divider {
+    background-color: #000000;
+    grid-column-start: -1;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: -1;
+}
+
+main {
+    grid-column-start: 4;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    padding: 10px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.submit_btn {
+    display: inline-block;
+    padding: 0.7em 1.7em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #FFFFFF;
+    background-color: #3369ff;
+    box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17), inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15), inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+    text-align: center;
+    position: relative;
+    border-color: transparent;
+}
+
+.submit_btn:active {
+    box-shadow: inset 0 0.6em 2em -0.3em rgba(0, 0, 0, 0.15), inset 0 0 0 0.05em rgba(255, 255, 255, 0.12);
+}
+
+#response-data {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.main_content {
+    height: 100%;
+}
