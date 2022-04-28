@@ -12,6 +12,8 @@ alembic = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
 requests = "*"
+starlette-graphene3 = "*"
+graphene-pydantic = "*"
 
 [dev-packages]
 
