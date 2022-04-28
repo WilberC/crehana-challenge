@@ -1,5 +1,8 @@
 # Crehana-Challenge
 
+- Production URL -> `https://crehana-backend.herokuapp.com/`
+- Graphql -> `https://crehana-backend.herokuapp.com/graphql/`
+
 - Requirements:
   - Have postgresql installed locally
   - The project is developed on `python 3.10.1`
