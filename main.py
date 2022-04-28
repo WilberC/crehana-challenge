@@ -2,10 +2,9 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from database import Base, engine
-from application.views.sync_data import sync_data_router, sync_all_data
-from application.views.user_view import user_router
-from application.views.post_view import post_router
-from application.views.comment_view import comment_router
+from application.views.rest.sync_data import sync_all_data
+from application.routes.rest_api_routes import rest_api_routes
+from application.routes.graphql_routes import graphql_routes
 from fastapi.middleware.cors import CORSMiddleware
 
 Base.metadata.create_all(bind=engine)
@@ -22,10 +21,8 @@ app.add_middleware(
 )
 
 # === Routes ===
-app.include_router(sync_data_router)
-app.include_router(user_router)
-app.include_router(post_router)
-app.include_router(comment_router)
+rest_api_routes(app)
+graphql_routes(app)
 # ===============
 
 templates = Jinja2Templates(directory="templates")
