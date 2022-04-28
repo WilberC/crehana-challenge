@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 from application.models.schemas.crehana_base_schema import CrehanaBaseSchema
 
@@ -15,7 +16,7 @@ class AddressSchema(BaseModel):
     suite: str
     city: str
     zipcode: str
-    geo: GeoSchema
+    geo: Optional[GeoSchema]
 
     class Config:
         orm_mode = True
@@ -34,10 +35,10 @@ class UserSchema(CrehanaBaseSchema):
     name: str
     username: str
     email: str
-    address: AddressSchema
-    phone: str
-    website: str
-    company: CompanySchema
+    address: Optional[AddressSchema]
+    phone: Optional[str]
+    website: Optional[str]
+    company: Optional[CompanySchema]
 
     class Config:
         orm_mode = True
